@@ -1,0 +1,65 @@
+#Pacotes necessários
+library(devtools)
+library(tidyverse)
+library(genderBR) #funcionalidade em help(package= genderBR)
+library('rScielo') #disponível em install_github("meirelesff/rScielo")
+library('bbplot')
+library('ggthemes')
+######raspando e organizando os dados#####
+journals <- get_journal_list() #coleta a lista de todos os journals cadastrados na base SciElo
+dados <- journals %>%
+  arrange(title) %>%
+  as.tibble %>%
+  select(title,
+         id,
+         author,
+         journal,
+         year
+         ) %>% 
+  filter(n_authors == 1) %>% 
+  
+#Como rodar esses dados seria algo que iria demorar muito tempo, para testar o código, criei um data frame de testes
+#Creating a test data frame which contains the ID of two random journals
+id <- c("2236-4633", "1809-4341")
+datatest <- data.frame(id)
+datatest$id <- (as.character(datatest$id)) #você precisa transformar as IDs em Character para o lapply funcionar
+
+####coletando e tratando os dados####
+t <- lapply(datatest$id, get_journal) #agora você tem vários df dentro de t, cada um tem os dados de um journal
+
+#for(i in 1:length(t)){
+#  assign(paste0("df",i),t[[i]])
+#}
+
+#juntando os objetos em um só df e rm dados que não serão utilizados e adicionando generos
+journals_sum <- lapply(datatest$id, get_journal) %>% 
+  bind_rows %>%
+  as.tibble %>%
+  filter(n_authors == 1) %>%
+  filter(country== "Brazil" | country== "Brasil") %>% #seleciona somente publicações brasileiras!
+  select(-institution,
+         -title,
+         -first_page,
+         -last_page,
+         -doi,
+         -abstract,
+         -keywords,
+         -inst_adress,
+         -first_author_surname,
+         -n_pages) %>% 
+  arrange(year)
+journals_sum$gender <- get_gender(journals_sum$author)
+#contar o número de homens e mulheres
+testally<- journals_sum %>% 
+  group_by(gender) %>%
+  tally() %>%
+  filter(gender != is.na(T))
+
+######Plot####
+plot <- ggplot()+
+  geom_bar(aes(y=testally$n, x=testally$gender, fill=testally$gender), stat='identity')+
+  labs(title="Nº de publicações, por gênero, nos journals selecionados",
+       subtitle="Journals: 'Almanack' e 'Vibrant: Virtual Brazilian Anthropology'")+
+  theme_wsj()+
+  coord_flip()
+plot
