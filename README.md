@@ -4,4 +4,4 @@ Tendo como base dois pacotes desenvolvidos por @meirelesff, tive como ideia cole
 
 **Atenção: recomendo que execute o código com uma quantidade especifica de journals selecionados (será necessário alterá-lo para isso), já que a execução da raspagem de todos os dados disponíveis na SciELO pode demorar bastante.**
 
-![Plot da CINT](https://i.imgur.com/DPu6ri5.jpg)
+![Plot da Cont. Intl.](https://i.imgur.com/DPu6ri5.jpg)
