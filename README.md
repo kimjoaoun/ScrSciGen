@@ -8,8 +8,11 @@ O código possui algumas falhas, quais serão corrigidas:
 **Atenção: recomendo que execute o código com uma quantidade especifica de journals selecionados (será necessário alterá-lo para isso), já que a execução da raspagem de todos os dados disponíveis na SciELO pode demorar bastante.**
 
 Por meio do código é possível gerar visualizações (exemplos abaixo) que mostram a quantidade de publicações feitas por homens e mulheres em determinadas publicações, na imagem abaixo é possível ver quando executado na revista Contexto Internacional (em 04/02). O código pode ser alterado para que se adicione nas visualizações mais detalhes, como o ano de publicação dos artigos.
+
 [Plot da Cont. Intl.](https://i.imgur.com/DPu6ri5.jpg)
+
 [Plot da Cont. Intl. 2](https://i.imgur.com/WMczwkV.jpg)
+
 [Plot da Cont. Intl. 3](https://i.imgur.com/uzIfDBF.jpg?1)
 
 
