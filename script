@@ -2,12 +2,15 @@
 library(devtools)
 library(tidyverse)
 library(genderBR) #funcionalidade em help(package= genderBR)
-library('rScielo') #disponível em install_github("meirelesff/rScielo")
-library('bbplot')
-library('ggthemes')
+library(rScielo) #disponível em devtools::install_github("meirelesff/rScielo")
+library(bbplot)
+library(ggthemes)
+library(dplyr)
+
 ######scraping and organizing data#####
 journals <- get_journal_list() #coleta a lista de todos os journals cadastrados na base SciElo
-journals <- (as.character(journals$id))
+journals <- journals$id %>%
+            as.character()
 
 journals_sum <- lapply(journals$id, get_journal) %>% 
   bind_rows %>%
