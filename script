@@ -3,7 +3,6 @@ library(devtools)
 library(genderBR) #funcionalidade em help(package= genderBR)
 library(rScielo) #disponível em devtools::install_github("meirelesff/rScielo")
 library(ggplot2)
-library(ggthemes)
 library(dplyr)
 
 ######scraping and organizing data#####
@@ -41,6 +40,5 @@ plot <- ggplot()+
   labs(title="Nº de publicações, por gênero, nos journals selecionados",
        subtitle="Journals: 'Almanack' e 'Vibrant: Virtual Brazilian Anthropology'",
        caption="Baseado em dados da Plataforma SciELO")+
-  theme_wsj()+
   coord_flip()
 plot
