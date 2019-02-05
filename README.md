@@ -1,6 +1,6 @@
 # Script para raspar e classificar de Dados da Plataforma SciELO
 
-Tendo como base dois pacotes desenvolvidos por @meirelesff, tive como ideia coletar os metadados disponibilizados pela plataforma SciELO e classificar eles por gênero. Para fazer a raspagem dos dados usei o package [rScielo](https://github.com/meirelesff/rScielo), para organiza-los foram utilizadas as ferramentas do Tidyverse e classificação dos nomes por gênero foi usado o package [genderBR](https://github.com/meirelesff/genderBR).
+Tendo como base dois pacotes desenvolvidos por @meirelesff, tive como ideia coletar os metadados disponibilizados pela plataforma SciELO e classificar eles por gênero. Para fazer a raspagem dos dados usei o package [rScielo](https://github.com/meirelesff/rScielo), para organiza-los foram utilizadas as ferramentas do ``Tidyverse`` e classificação dos nomes por gênero foi usado o package [genderBR](https://github.com/meirelesff/genderBR).
 O código possui algumas falhas, quais serão corrigidas:
 * O fato dele responder NA para nomes estrangeiros (fácilmente explicado pelo fato da base de nomes utilizada pelo genderBR ser a do IBGE).
 * Ele só identifica publicações feitas por um autor, publicações com mais de um autor são filtradas.
@@ -16,4 +16,4 @@ Por meio do código é possível gerar visualizações (exemplos abaixo) que mos
 [Plot da Cont. Intl. 3](https://i.imgur.com/uzIfDBF.jpg?1)
 
 
-Como citar: SANTOS, João Pedro; ScrSciGen: Raspador e Classificador de Dados da Plataforma SciELO. Versão 0.1. Rio de Janeiro, 05 jan. 2019. Disponível em: https://github.com/kimjoaoun/scielo_gender_scrapper/. Acesso em: *???*.
+Como citar: ``SANTOS, João Pedro; ScrSciGen: Raspador e Classificador de Dados da Plataforma SciELO. Versão 0.1. Rio de Janeiro, 05 jan. 2019. Disponível em: https://github.com/kimjoaoun/scielo_gender_scrapper/. Acesso em: *???*.``
