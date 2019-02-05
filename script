@@ -2,7 +2,6 @@
 library(devtools)
 library(genderBR) #funcionalidade em help(package= genderBR)
 library(rScielo) #disponível em devtools::install_github("meirelesff/rScielo")
-library(bbplot)
 library(ggplot2)
 library(ggthemes)
 library(dplyr)
@@ -27,7 +26,7 @@ journals_sum <- lapply(journals$id, get_journal) %>%
          -inst_adress,
          -first_author_surname,
          -n_pages) %>% 
-  arrange(year)
+         arrange(year)
 journals_sum$gender <- get_gender(journals_sum$author)
 
 #contar o número de homens e mulheres
