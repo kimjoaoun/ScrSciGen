@@ -1,4 +1,4 @@
-#Pacotes necessários
+Pacotes necessários
 library(devtools)
 library(genderBR) #funcionalidade em help(package= genderBR)
 library(rScielo) #disponível em devtools::install_github("meirelesff/rScielo")
