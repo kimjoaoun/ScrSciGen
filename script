@@ -1,44 +1,33 @@
-#Pacotes necessários
+####Libraries####
 library(devtools)
 library(genderBR) #funcionalidade em help(package= genderBR)
-library(rScielo) #disponível em devtools::install_github("meirelesff/rScielo")
+library(rScielo) #available in devtools::install_github("meirelesff/rScielo")
 library(ggplot2)
 library(dplyr)
 
-######scraping and organizing data#####
+####Coleta a Base de Journals####
+
 journals <- get_journal_list() #coleta a lista de todos os journals cadastrados na base SciElo
 journals <- journals$id %>%
-            as.character()
+  as.character()
 
-journals_sum <- lapply(journals$id, get_journal) %>% 
-  bind_rows %>%
-  as.tibble %>%
-  filter(n_authors == 1) %>%
-  filter(country== "Brazil" | country== "Brasil") %>% #seleciona somente publicações brasileiras!
-  select(-institution,
-         -title,
-         -first_page,
-         -last_page,
-         -doi,
-         -abstract,
-         -keywords,
-         -inst_adress,
-         -first_author_surname,
-         -n_pages) %>% 
-         arrange(year)
-journals_sum$gender <- get_gender(journals_sum$author)
+#####Coleta os metadados e atribui gênero aos nomes####
+genderify <- function(journals_ids) {
+  journals_sum <- lapply(journals_ids, rScielo::get_journal)
+  
+  journals_sum2 <- dplyr::bind_rows(journals_sum)
+  
+  journals_sum3 <- dplyr::as_tibble(journals_sum2)
+  
+  journals_sum3$gender <- get_gender(journals_sum3$author) 
+  
+  return(journals_sum3)
+}
 
-#contar o número de homens e mulheres
+#####conta o número de homens e mulheres####
 sumgender<- journals_sum %>% 
   group_by(gender) %>%
   tally() %>%
   filter(gender != is.na(T))
 
-######Plot####
-plot <- ggplot()+
-  geom_bar(aes(y=sumgender$n, x=sumgender$gender, fill=sumgender$gender), stat='identity')+
-  labs(title="Nº de publicações, por gênero, nos journals selecionados",
-       subtitle="Journals: 'Almanack' e 'Vibrant: Virtual Brazilian Anthropology'",
-       caption="Baseado em dados da Plataforma SciELO")+
-  coord_flip()
-plot
+
