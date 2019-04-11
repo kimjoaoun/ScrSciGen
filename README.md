@@ -1,5 +1,7 @@
 # Script para raspar e classificar de Dados da Plataforma SciELO
 
+[Desenhado para uso em disciplina de graduação]
+
 Tendo como base dois pacotes desenvolvidos por @meirelesff, tive como ideia coletar os metadados disponibilizados pela plataforma SciELO e classificar eles por gênero. Para fazer a raspagem dos dados usei o package [rScielo](https://github.com/meirelesff/rScielo), para organiza-los foram utilizadas as ferramentas do ``Tidyverse`` e classificação dos nomes por gênero foi usado o package [genderBR](https://github.com/meirelesff/genderBR).
 O código possui algumas falhas, quais serão corrigidas:
 * O fato dele responder NA para nomes estrangeiros (fácilmente explicado pelo fato da base de nomes utilizada pelo ``genderBR`` ser a do IBGE).
