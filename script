@@ -15,9 +15,7 @@ journals <- journals$id %>%
 genderify <- function(journals_ids) {
   journals_sum <- lapply(journals_ids, rScielo::get_journal)
   
-  journals_sum2 <- dplyr::bind_rows(journals_sum)
-  
-  journals_sum3 <- dplyr::as_tibble(journals_sum2)
+  journals_sum3 <- dplyr::as_tibble(dplyr::bind_rows(journals_sum))
   
   journals_sum3$gender <- get_gender(journals_sum3$author) 
   
